@@ -14,7 +14,7 @@ public class User {
 	private String userName;
 	private String userEmail;
 	private String userPassword;
-	private int userPhone;
+	private long userPhone;
 	private String userAddress;
 	private String userType;
 	private String userCreatedAt;
@@ -60,12 +60,12 @@ public class User {
 	}
 
 
-	public int getUserPhone() {
+	public long getUserPhone() {
 		return userPhone;
 	}
 
 
-	public void setUserPhone(int userPhone) {
+	public void setUserPhone(long userPhone) {
 		this.userPhone = userPhone;
 	}
 
@@ -105,7 +105,7 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(String userName, String userEmail, String userPassword, int userPhone, String userAddress,
+	public User(String userName, String userEmail, String userPassword, long userPhone, String userAddress,
 			String userType, String userCreatedAt) {
 		super();
 		this.userName = userName;
@@ -118,7 +118,7 @@ public class User {
 	}
 
 
-	public User(int userid, String userName, String userEmail, String userPassword, int userPhone, String userAddress,
+	public User(int userid, String userName, String userEmail, String userPassword, long userPhone, String userAddress,
 			String userType, String userCreatedAt) {
 		super();
 		this.userid = userid;

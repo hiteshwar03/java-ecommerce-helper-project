@@ -21,8 +21,13 @@ public class SignupServlet extends HttpServlet {
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Retrieve form parameters
-		String username = request.getParameter("username");
+		String name = request.getParameter("name");
 		String email = request.getParameter("email");
+		String pwd = request.getParameter("password");
+		long phone = Long.parseLong(request.getParameter("phone"));
+		String addr = request.getParameter("address");
+		String usertype = request.getParameter("usertype");
+		
 
 		// store data using hibernate
 		try {
@@ -40,23 +45,20 @@ public class SignupServlet extends HttpServlet {
 			
 			Transaction transaction = session.beginTransaction();
 
-//			User user = new User();
+			User user = new User(name, email, pwd, phone, addr, usertype, usertype);
 //			user.setUsername(username);
 //			user.setEmail(email);
 
-//			session.save(user);
+			session.save(user);
 
 			transaction.commit();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 
-		// For simplicity, just print the data to the console
-		System.out.println("Username: " + username);
-		System.out.println("Email: " + email);
 
 		// Forward to a confirmation page or send a response
-		request.setAttribute("username", username);
-		request.getRequestDispatcher("success.jsp").forward(request, response);
+		request.setAttribute("name", name);
+		request.getRequestDispatcher("/frontend/success.jsp").forward(request, response);
 	}
 }
