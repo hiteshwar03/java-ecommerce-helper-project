@@ -40,14 +40,16 @@ public class AddCategoryServlet extends HttpServlet {
 				category.setCategoryTitle(name);
 				category.setCategoryDescription(desc);
 				
-				session.save(category);
+				int id=(Integer)session.save(category);//it return primary key of record
+				
+				System.out.println(id+":"+name+":"+desc);
 	
 				transaction.commit();
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			}
 		
-			System.out.println(name+":"+desc);
+			
 
 		// Forward to a confirmation page or send a response
 		request.setAttribute("name", name);

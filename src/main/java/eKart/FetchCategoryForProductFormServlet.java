@@ -13,15 +13,17 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import eKart.entities.Category;
 import eKart.entities.User;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.List;
 
-@WebServlet("/fetch-user")
-public class FetchDataServlet extends HttpServlet {
+@WebServlet("/get-category")
+public class FetchCategoryForProductFormServlet extends HttpServlet {
 
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -30,29 +32,13 @@ public class FetchDataServlet extends HttpServlet {
 			// store data using hibernate
 			try {
 				Session session=new Configuration().configure("hibernate.cfg.xml").buildSessionFactory().openSession();
-				Transaction transaction = session.beginTransaction();
-	
-				
-				
-				// Fetch the entity with ID 1
-	            int id = 1;
-	            user = session.get(User.class, id);
-	            System.out.println(user);
-//	            byte[] imageData = user.getImageData();
-				transaction.commit();
-				
-				if (user != null) {
-
-					request.setAttribute("user", user);
-					
-				   request.getRequestDispatcher("/frontend/show.jsp").forward(request, response);
-			           } else {
-	                response.sendError(HttpServletResponse.SC_NOT_FOUND, "Content not found");
-	            }
+				Transaction transaction = session.beginTransaction();   
+			    
 				
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			}
 		
 	}
+	
 }

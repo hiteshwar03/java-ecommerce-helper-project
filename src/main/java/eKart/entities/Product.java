@@ -2,6 +2,7 @@ package eKart.entities;
 
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,12 +18,22 @@ public class Product {
 	private int productId;
 	private String pName;
 	private String pDesc;
-	private String pPhoto;
-	private String pPrice;
-	private String pDiscount;
-	private String pQuantity;
+	private int pPrice;
+	private int pDiscount;
+	private int pQuantity;
+	
 	@ManyToOne
 	private Category category;
+	
+	
+	
+	//store image
+	private String imageName;
+
+//  @blo // Large Object Binary
+	@Column(columnDefinition = "LONGBLOB") // Explicitly specify the column type
+	private byte[] imageData;
+	private String imageType; // MIME type for the image
 	public int getProductId() {
 		return productId;
 	}
@@ -41,28 +52,22 @@ public class Product {
 	public void setpDesc(String pDesc) {
 		this.pDesc = pDesc;
 	}
-	public String getpPhoto() {
-		return pPhoto;
-	}
-	public void setpPhoto(String pPhoto) {
-		this.pPhoto = pPhoto;
-	}
-	public String getpPrice() {
+	public int getpPrice() {
 		return pPrice;
 	}
-	public void setpPrice(String pPrice) {
+	public void setpPrice(int pPrice) {
 		this.pPrice = pPrice;
 	}
-	public String getpDiscount() {
+	public int getpDiscount() {
 		return pDiscount;
 	}
-	public void setpDiscount(String pDiscount) {
+	public void setpDiscount(int pDiscount) {
 		this.pDiscount = pDiscount;
 	}
-	public String getpQuantity() {
+	public int getpQuantity() {
 		return pQuantity;
 	}
-	public void setpQuantity(String pQuantity) {
+	public void setpQuantity(int pQuantity) {
 		this.pQuantity = pQuantity;
 	}
 	public Category getCategory() {
@@ -71,33 +76,46 @@ public class Product {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
-	public Product(int productId, String pName, String pDesc, String pPhoto, String pPrice, String pDiscount,
-			String pQuantity, Category category) {
-		super();
-		this.productId = productId;
-		this.pName = pName;
-		this.pDesc = pDesc;
-		this.pPhoto = pPhoto;
-		this.pPrice = pPrice;
-		this.pDiscount = pDiscount;
-		this.pQuantity = pQuantity;
-		this.category = category;
+	public String getImageName() {
+		return imageName;
 	}
-	public Product(String pName, String pDesc, String pPhoto, String pPrice, String pDiscount, String pQuantity,
-			Category category) {
-		super();
-		this.pName = pName;
-		this.pDesc = pDesc;
-		this.pPhoto = pPhoto;
-		this.pPrice = pPrice;
-		this.pDiscount = pDiscount;
-		this.pQuantity = pQuantity;
-		this.category = category;
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
+	}
+	public byte[] getImageData() {
+		return imageData;
+	}
+	public void setImageData(byte[] imageData) {
+		this.imageData = imageData;
+	}
+	public String getImageType() {
+		return imageType;
+	}
+	public void setImageType(String imageType) {
+		this.imageType = imageType;
 	}
 	public Product() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	public Product(String pName, String pDesc, int pPrice, int pDiscount, int pQuantity, Category category,
+			String imageName, byte[] imageData, String imageType) {
+		super();
+		this.pName = pName;
+		this.pDesc = pDesc;
+		this.pPrice = pPrice;
+		this.pDiscount = pDiscount;
+		this.pQuantity = pQuantity;
+		this.category = category;
+		this.imageName = imageName;
+		this.imageData = imageData;
+		this.imageType = imageType;
+	}
+	
+	
+	
+	
+
 	
 	
 }
