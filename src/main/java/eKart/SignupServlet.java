@@ -11,6 +11,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import eKart.entities.User;
+
 import java.io.IOException;
 
 @WebServlet("/signup")
@@ -34,14 +36,15 @@ public class SignupServlet extends HttpServlet {
 													//OR
 			Session session=new Configuration().configure("hibernate.cfg.xml").buildSessionFactory().openSession();
 			
-			Transaction transaction = session.beginTransaction();
 			
+			
+			Transaction transaction = session.beginTransaction();
 
-			User user = new User();
-			user.setUsername(username);
-			user.setEmail(email);
+//			User user = new User();
+//			user.setUsername(username);
+//			user.setEmail(email);
 
-			session.save(user);
+//			session.save(user);
 
 			transaction.commit();
 		} catch (Exception e) {
