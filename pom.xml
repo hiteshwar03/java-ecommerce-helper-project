@@ -47,6 +47,13 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>6.2.5.Final</version> <!-- Use the latest stable version -->
 		</dependency>
+		
+		<dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>jstl</artifactId>
+    <version>1.2</version>
+</dependency>
+
 	</dependencies>
 
 	<build>

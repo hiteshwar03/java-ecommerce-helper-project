@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 @WebServlet("/signup")
-@MultipartConfig
+@MultipartConfig 
 public class SignupServlet extends HttpServlet {
 
 	@Override
@@ -33,8 +33,11 @@ public class SignupServlet extends HttpServlet {
 		String usertype = request.getParameter("usertype");
 		Part filePart = request.getPart("image");
 
+		String imageType = "image/jpeg"; // Default MIME type
 		if (filePart != null) {
             String imageName = filePart.getSubmittedFileName();
+            imageType = filePart.getContentType(); // Get the MIME type of the uploaded file
+            
             InputStream imageInputStream = filePart.getInputStream();
             byte[] imageData = imageInputStream.readAllBytes(); // Convert InputStream to byte array
             
@@ -54,7 +57,7 @@ public class SignupServlet extends HttpServlet {
 				
 				Transaction transaction = session.beginTransaction();
 	
-				User user = new User(name, email, pwd, phone, addr, usertype, usertype, imageName, imageData);
+				User user = new User(name, email, pwd, phone, addr, usertype, usertype, imageName, imageData, imageType);
 	//			user.setUsername(username);
 	//			user.setEmail(email);
 	
@@ -72,6 +75,7 @@ public class SignupServlet extends HttpServlet {
 
 		// Forward to a confirmation page or send a response
 		request.setAttribute("name", name);
+		
 		request.getRequestDispatcher("/frontend/success.jsp").forward(request, response);
 	}
 }
