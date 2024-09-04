@@ -14,27 +14,33 @@
             <tr>
                 <th>ID</th>
                 <th>Name</th>
+                <th>Price</th>
+                <th>Discount</th>
+                <th>Description</th>
                 <th>Image</th>
-                <th>Action</th> <!-- Added column for action buttons -->
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            <c:forEach var="product" items="${products}">
                 <tr>
                     <td>${product.productId}</td>
                     <td>${product.pName}</td>
+                    <td>${product.pPrice}</td>
+                    <td>${product.pDiscount}</td>
+                    <td>${product.pDesc}</td>
+                    
                     <td>
                         <c:if test="${not empty product.imageData}">
                             <img src="${pageContext.request.contextPath}/image?id=${product.productId}" width="100" alt="Product Image" />
                         </c:if>
                     </td>
                     <td>
-                    	 <a href="${pageContext.request.contextPath}/viewProduct?id=${product.productId}">
-                            <button>View Product</button>
+                    	 <a href="${pageContext.request.contextPath}/addToCartProduct?id=${product.productId}">
+                            <button>add to cart</button>
                         </a>
                     </td>
                 </tr>
-            </c:forEach>
+           
         </tbody>
     </table>
 </body>
