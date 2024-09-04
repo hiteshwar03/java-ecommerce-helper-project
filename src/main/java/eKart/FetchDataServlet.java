@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-@WebServlet("/fetch")
+@WebServlet("/fetch-user")
 public class FetchDataServlet extends HttpServlet {
 
 	@Override

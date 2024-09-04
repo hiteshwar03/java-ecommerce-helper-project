@@ -7,7 +7,7 @@
 <body>
    <div class="container">
         <h1>Signup</h1>
-        <form action="/eKart/signup" method="post" enctype="multipart/form-data">
+        <form action="/eKart/signup" method="post">
             <div class="form-group">
                 <label for="username">Name</label>
                 <input type="text" id="name" name="name" required>
@@ -34,10 +34,6 @@
 					<option value="normal">Normal</option>
 					<option value="admin">Admin</option>
 				</select>
-            </div>
-            <div class="form-group">
-                <label for="img">Image</label>
-				<input type="file" name="image">
             </div>
             
             

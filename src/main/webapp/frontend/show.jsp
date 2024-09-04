@@ -8,13 +8,11 @@
 </head>
 <body>
 	<h2>Display data</h2>
+	
+	 <h2>${user.userid}</h2>
 	 <h2>${user.userName}</h2>
 	 <h2>${user.userEmail}</h2>
 	 
-	
-		<c:if test="${not empty user.imageData}">>
-				 <img src="${pageContext.request.contextPath}/image?id=${user.userid}" alt="User Image" width="200px" />
-        </c:if>
 
 </body>
 </html>

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import org.apache.jasper.tagplugins.jstl.core.Catch;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -17,9 +18,9 @@ import eKart.entities.User;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Date;
 
 @WebServlet("/signup")
-@MultipartConfig 
 public class SignupServlet extends HttpServlet {
 
 	@Override
@@ -31,16 +32,8 @@ public class SignupServlet extends HttpServlet {
 		long phone = Long.parseLong(request.getParameter("phone"));
 		String addr = request.getParameter("address");
 		String usertype = request.getParameter("usertype");
-		Part filePart = request.getPart("image");
+		Date createdOn=new Date();
 
-		String imageType = "image/jpeg"; // Default MIME type
-		if (filePart != null) {
-            String imageName = filePart.getSubmittedFileName();
-            imageType = filePart.getContentType(); // Get the MIME type of the uploaded file
-            
-            InputStream imageInputStream = filePart.getInputStream();
-            byte[] imageData = imageInputStream.readAllBytes(); // Convert InputStream to byte array
-            
 			// store data using hibernate
 			try {
 	
@@ -57,24 +50,20 @@ public class SignupServlet extends HttpServlet {
 				
 				Transaction transaction = session.beginTransaction();
 	
-				User user = new User(name, email, pwd, phone, addr, usertype, usertype, imageName, imageData, imageType);
-	//			user.setUsername(username);
-	//			user.setEmail(email);
-	
+				User user = new User(name, email, pwd, phone, addr, usertype, createdOn);
+					
 				session.save(user);
 	
 				transaction.commit();
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			}
-		}
-		else {
-			 response.getWriter().write("No image uploaded");
-		}
+		
 
 
 		// Forward to a confirmation page or send a response
 		request.setAttribute("name", name);
+		request.setAttribute("date", createdOn);
 		
 		request.getRequestDispatcher("/frontend/success.jsp").forward(request, response);
 	}

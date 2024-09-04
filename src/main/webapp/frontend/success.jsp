@@ -6,6 +6,7 @@
 </head>
 <body>
     <h2>Signup Successful</h2>
+    <p>${date}</p>
     <p>Thank you, <%= request.getAttribute("name") %>! You have successfully signed up.</p>
     
 </body>

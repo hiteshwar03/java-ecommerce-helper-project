@@ -1,6 +1,7 @@
 package eKart.entities;
 
 import java.util.Arrays;
+import java.util.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,6 +9,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 @Entity 	//mendatory
 public class User {
@@ -21,14 +24,8 @@ public class User {
 	private long userPhone;
 	private String userAddress;
 	private String userType;
-	private String userCreatedAt;
-	private String imageName;
-
-//    @blo // Large Object Binary
-    @Column(columnDefinition = "LONGBLOB") // Explicitly specify the column type
-    private byte[] imageData;
-	private String imageType; // MIME type for the image
-	
+	@Temporal(TemporalType.DATE)
+	private Date userCreatedAt;
 	
 	public int getUserid() {
 		return userid;
@@ -100,41 +97,14 @@ public class User {
 	}
 
 
-	public String getUserCreatedAt() {
+	public Date getUserCreatedAt() {
 		return userCreatedAt;
 	}
 
 
-	public void setUserCreatedAt(String userCreatedAt) {
+	public void setUserCreatedAt(Date userCreatedAt) {
 		this.userCreatedAt = userCreatedAt;
 	}
-
-
-	 public String getImageName() {
-	        return imageName;
-	    }
-
-	    public void setImageName(String imageName) {
-	        this.imageName = imageName;
-	    }
-
-	    public byte[] getImageData() {
-	        return imageData;
-	    }
-
-	    public void setImageData(byte[] imageData) {
-	        this.imageData = imageData;
-	    }
-	    
-	    
-	public String getImageType() {
-			return imageType;
-		}
-
-
-		public void setImageType(String imageType) {
-			this.imageType = imageType;
-		}
 
 
 	public User() {
@@ -144,7 +114,7 @@ public class User {
 
 
 	public User(String userName, String userEmail, String userPassword, long userPhone, String userAddress,
-			String userType, String userCreatedAt, String imageName, byte[] imageData, String imageType) {
+			String userType, Date userCreatedAt) {
 		super();
 		this.userName = userName;
 		this.userEmail = userEmail;
@@ -153,9 +123,7 @@ public class User {
 		this.userAddress = userAddress;
 		this.userType = userType;
 		this.userCreatedAt = userCreatedAt;
-		this.imageName = imageName;
-		this.imageData = imageData;
-		this.imageType = imageType;
+
 	}
 
 
@@ -163,8 +131,7 @@ public class User {
 	public String toString() {
 		return "User [userid=" + userid + ", userName=" + userName + ", userEmail=" + userEmail + ", userPassword="
 				+ userPassword + ", userPhone=" + userPhone + ", userAddress=" + userAddress + ", userType=" + userType
-				+ ", userCreatedAt=" + userCreatedAt + ", imageName=" + imageName + ", imageData="
-				+ Arrays.toString(imageData) + ", imageType=" + imageType + "]";
+				+ ", userCreatedAt=" + userCreatedAt + "]";
 	}
 
 
