@@ -1,10 +1,12 @@
 package eKart;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -14,8 +16,10 @@ import org.hibernate.cfg.Configuration;
 import eKart.entities.User;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 @WebServlet("/signup")
+@MultipartConfig
 public class SignupServlet extends HttpServlet {
 
 	@Override
@@ -27,33 +31,42 @@ public class SignupServlet extends HttpServlet {
 		long phone = Long.parseLong(request.getParameter("phone"));
 		String addr = request.getParameter("address");
 		String usertype = request.getParameter("usertype");
-		
+		Part filePart = request.getPart("image");
 
-		// store data using hibernate
-		try {
-
-
-//			Configuration cfg=new Configuration().configure().addAnnotatedClass(User.class);
-//			SessionFactory sessionFactory=cfg.buildSessionFactory();
-//			Session session=sessionFactory.openSession();
-													//OR
-//			Session session=new Configuration().configure().addAnnotatedClass(User.class).buildSessionFactory().openSession();
-													//OR
-			Session session=new Configuration().configure("hibernate.cfg.xml").buildSessionFactory().openSession();
-			
-			
-			
-			Transaction transaction = session.beginTransaction();
-
-			User user = new User(name, email, pwd, phone, addr, usertype, usertype);
-//			user.setUsername(username);
-//			user.setEmail(email);
-
-			session.save(user);
-
-			transaction.commit();
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
+		if (filePart != null) {
+            String imageName = filePart.getSubmittedFileName();
+            InputStream imageInputStream = filePart.getInputStream();
+            byte[] imageData = imageInputStream.readAllBytes(); // Convert InputStream to byte array
+            
+			// store data using hibernate
+			try {
+	
+	
+	//			Configuration cfg=new Configuration().configure().addAnnotatedClass(User.class);
+	//			SessionFactory sessionFactory=cfg.buildSessionFactory();
+	//			Session session=sessionFactory.openSession();
+														//OR
+	//			Session session=new Configuration().configure().addAnnotatedClass(User.class).buildSessionFactory().openSession();
+														//OR
+				Session session=new Configuration().configure("hibernate.cfg.xml").buildSessionFactory().openSession();
+				
+				
+				
+				Transaction transaction = session.beginTransaction();
+	
+				User user = new User(name, email, pwd, phone, addr, usertype, usertype, imageName, imageData);
+	//			user.setUsername(username);
+	//			user.setEmail(email);
+	
+				session.save(user);
+	
+				transaction.commit();
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		else {
+			 response.getWriter().write("No image uploaded");
 		}
 
 

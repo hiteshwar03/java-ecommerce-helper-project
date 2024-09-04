@@ -1,9 +1,11 @@
 package eKart.entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 
 @Entity 	//mendatory
 public class User {
@@ -18,6 +20,11 @@ public class User {
 	private String userAddress;
 	private String userType;
 	private String userCreatedAt;
+	private String imageName;
+
+//    @blo // Large Object Binary
+    @Column(columnDefinition = "LONGBLOB") // Explicitly specify the column type
+    private byte[] imageData;
 	
 	
 	public int getUserid() {
@@ -100,26 +107,30 @@ public class User {
 	}
 
 
+	 public String getImageName() {
+	        return imageName;
+	    }
+
+	    public void setImageName(String imageName) {
+	        this.imageName = imageName;
+	    }
+
+	    public byte[] getImageData() {
+	        return imageData;
+	    }
+
+	    public void setImageData(byte[] imageData) {
+	        this.imageData = imageData;
+	    }
+	    
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(String userName, String userEmail, String userPassword, long userPhone, String userAddress,
-			String userType, String userCreatedAt) {
-		super();
-		this.userName = userName;
-		this.userEmail = userEmail;
-		this.userPassword = userPassword;
-		this.userPhone = userPhone;
-		this.userAddress = userAddress;
-		this.userType = userType;
-		this.userCreatedAt = userCreatedAt;
-	}
-
 
 	public User(int userid, String userName, String userEmail, String userPassword, long userPhone, String userAddress,
-			String userType, String userCreatedAt) {
+			String userType, String userCreatedAt, String imageName, byte[] imageData) {
 		super();
 		this.userid = userid;
 		this.userName = userName;
@@ -129,5 +140,24 @@ public class User {
 		this.userAddress = userAddress;
 		this.userType = userType;
 		this.userCreatedAt = userCreatedAt;
+		this.imageName = imageName;
+		this.imageData = imageData;
 	}
+
+
+	public User(String userName, String userEmail, String userPassword, long userPhone, String userAddress,
+			String userType, String userCreatedAt, String imageName, byte[] imageData) {
+		super();
+		this.userName = userName;
+		this.userEmail = userEmail;
+		this.userPassword = userPassword;
+		this.userPhone = userPhone;
+		this.userAddress = userAddress;
+		this.userType = userType;
+		this.userCreatedAt = userCreatedAt;
+		this.imageName = imageName;
+		this.imageData = imageData;
+	}
+
+	
 }
