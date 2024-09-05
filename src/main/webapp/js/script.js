@@ -91,12 +91,6 @@ function deleteItemFromCart(pid) {
     updateCart();
 }
 
-function totalCartItem(){
-	let cart = localStorage.getItem("cart");
-	let cartObj = cart ? JSON.parse(cart) : []; // Initialize cartObj as an empty array if cart is null
-	$(".cart-items").html(`(${cartObj.length})`);
-	   
-}
 
 $(document).ready(function() {
     updateCart();
