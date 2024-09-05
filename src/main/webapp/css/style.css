@@ -1,0 +1,22 @@
+/*toast css*/
+#toast {
+	position: fixed;
+	bottom: 10%;
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: #4caf50; /* Green color for success */
+	color: white;
+	padding: 12px;
+	border-radius: 5px;
+	align-items: center;
+	justify-content: space-between;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	font-family: Arial, sans-serif;
+	z-index: 1000; /* Ensures toast is on top of other elements */
+	display: none;
+}
+
+/* Icon styling */
+#toast i {
+	margin-right: 10px;
+}
