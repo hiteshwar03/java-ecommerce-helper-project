@@ -64,7 +64,7 @@ public class AddProductServlet extends HttpServlet {
 				
 				Category category=session.get(Category.class, category_id);
 	
-				Product product=new Product(name, desc, price, discount, qty, category, imageName, imageData, imageType);
+				Product product=new Product(name, desc, price, discount, qty, category, null, imageName, imageData, imageType);
 	
 				session.save(product);
 	

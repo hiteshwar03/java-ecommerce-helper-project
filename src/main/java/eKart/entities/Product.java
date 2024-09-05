@@ -25,7 +25,8 @@ public class Product {
 	@ManyToOne
 	private Category category;
 	
-	
+	@ManyToOne
+	private Cart cart;
 	
 	//store image
 	private String imageName;
@@ -94,11 +95,18 @@ public class Product {
 	public void setImageType(String imageType) {
 		this.imageType = imageType;
 	}
+	
+	public Cart getCart() {
+		return cart;
+	}
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
 	public Product() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Product(String pName, String pDesc, int pPrice, int pDiscount, int pQuantity, Category category,
+	public Product(String pName, String pDesc, int pPrice, int pDiscount, int pQuantity, Category category, Cart cart,
 			String imageName, byte[] imageData, String imageType) {
 		super();
 		this.pName = pName;
@@ -107,6 +115,7 @@ public class Product {
 		this.pDiscount = pDiscount;
 		this.pQuantity = pQuantity;
 		this.category = category;
+		this.cart = cart;
 		this.imageName = imageName;
 		this.imageData = imageData;
 		this.imageType = imageType;

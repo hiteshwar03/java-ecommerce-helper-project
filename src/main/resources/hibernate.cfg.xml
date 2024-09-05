@@ -22,6 +22,8 @@
         <mapping class="eKart.entities.User"/>
         <mapping class="eKart.entities.Category"/>
         <mapping class="eKart.entities.Product"/>
+        <mapping class="eKart.entities.Cart"/>
+        
         
     </session-factory>
 </hibernate-configuration>

@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
@@ -26,6 +27,9 @@ public class User {
 	private String userType;
 	@Temporal(TemporalType.DATE)
 	private Date userCreatedAt;
+	
+//	@OneToOne
+//	private Cart cart;
 	
 	public int getUserid() {
 		return userid;
@@ -123,16 +127,33 @@ public class User {
 		this.userAddress = userAddress;
 		this.userType = userType;
 		this.userCreatedAt = userCreatedAt;
-
 	}
 
 
-	@Override
-	public String toString() {
-		return "User [userid=" + userid + ", userName=" + userName + ", userEmail=" + userEmail + ", userPassword="
-				+ userPassword + ", userPhone=" + userPhone + ", userAddress=" + userAddress + ", userType=" + userType
-				+ ", userCreatedAt=" + userCreatedAt + "]";
-	}
+//	public Cart getCart() {
+//		return cart;
+//	}
+//
+//
+//	public void setCart(Cart cart) {
+//		this.cart = cart;
+//	}
+
+
+//	public User(String userName, String userEmail, String userPassword, long userPhone, String userAddress,
+//			String userType, Date userCreatedAt, Cart cart) {
+//		super();
+//		this.userName = userName;
+//		this.userEmail = userEmail;
+//		this.userPassword = userPassword;
+//		this.userPhone = userPhone;
+//		this.userAddress = userAddress;
+//		this.userType = userType;
+//		this.userCreatedAt = userCreatedAt;
+//		this.cart = cart;
+//	}
+
+
 
 
 	
