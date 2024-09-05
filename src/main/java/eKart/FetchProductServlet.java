@@ -13,6 +13,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import eKart.entities.Category;
 import eKart.entities.Product;
 import eKart.entities.User;
 
@@ -36,19 +37,14 @@ public class FetchProductServlet extends HttpServlet {
 				
 				// Fetch the entity with ID 1
 				List<Product> products = session.createQuery("from Product", Product.class).list();
-				System.out.println(products);
-	            
+				List<Category> categories = session.createQuery("from Category", Category.class).list();
+				
 				transaction.commit();
-				
-				if (products != null) {
 
-					request.setAttribute("products", products);
-					
-				   request.getRequestDispatcher("/frontend/home.jsp").forward(request, response);
-			           } else {
-	                response.sendError(HttpServletResponse.SC_NOT_FOUND, "Content not found");
-	            }
-				
+				request.setAttribute("products", products);
+				request.setAttribute("categories", categories);
+				request.getRequestDispatcher("/frontend/home.jsp").forward(request, response);
+			   
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			}

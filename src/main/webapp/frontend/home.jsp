@@ -9,6 +9,18 @@
 </head>
 <body>
     <h1>Product List</h1>
+    
+      <c:forEach var="category" items="${categories}">
+      	<a href="${pageContext.request.contextPath}/viewProduct?id=${category.categoryId}">
+            ${category.categoryTitle}                  
+         </a> &nbsp;&nbsp;
+      </c:forEach>
+      <br>
+      <br>
+    
+    
+    
+    
     <table border="1">
         <thead>
             <tr>
