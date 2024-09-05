@@ -45,7 +45,7 @@ function updateCart(){
 	}
 	else{
 		console.log(cartObj);
-		$("cart-items").html('(${cartObj.length})');
+		$(".cart-items").html(`(${cartObj.length})`);
 		let table=`
 		<table border="1">
 		        <thead>
