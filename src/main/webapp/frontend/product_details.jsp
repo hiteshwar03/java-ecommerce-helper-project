@@ -9,6 +9,7 @@
     
 </head>
 <body>
+<%@ include file="/components/navbar.jsp" %>
     <h1>Product List</h1>
     <table border="1">
         <thead>

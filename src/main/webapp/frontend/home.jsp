@@ -8,6 +8,7 @@
     <title>Product List</title>
 </head>
 <body>
+<%@ include file="/components/navbar.jsp" %>
     <h1>Product List</h1>
     
     <a href="${pageContext.request.contextPath}/fetch-product?id=all">
