@@ -10,15 +10,17 @@
 <body>
     <h1>Product List</h1>
     
+    <a href="${pageContext.request.contextPath}/fetch-product?id=all">
+           All products              
+         </a> &nbsp;&nbsp;
+    
       <c:forEach var="category" items="${categories}">
-      	<a href="${pageContext.request.contextPath}/viewProduct?id=${category.categoryId}">
+      	<a href="${pageContext.request.contextPath}/fetch-product?id=${category.categoryId}">
             ${category.categoryTitle}                  
          </a> &nbsp;&nbsp;
       </c:forEach>
       <br>
       <br>
-    
-    
     
     
     <table border="1">

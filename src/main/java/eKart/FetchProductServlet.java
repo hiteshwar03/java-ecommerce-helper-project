@@ -12,6 +12,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 
 import eKart.entities.Category;
 import eKart.entities.Product;
@@ -29,14 +30,24 @@ public class FetchProductServlet extends HttpServlet {
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-			// store data using hibernate
+		     String category =request.getParameter("id");
+		     List<Product> products=null;;
+		     
+		    
 			try {
 				Session session=new Configuration().configure("hibernate.cfg.xml").buildSessionFactory().openSession();
 				Transaction transaction = session.beginTransaction();
+				if(category.equals("all")) {
+					 products = session.createQuery("from Product", Product.class).list();
+			    	 
+				}
+				else {
+					int catid=Integer.parseInt(category);
+					Query<Product> query = session.createQuery("from Product as p where p.category.categoryId=:id", Product.class);
+					query.setParameter("id", catid);
+					products=query.list();
+				}
 				
-				
-				// Fetch the entity with ID 1
-				List<Product> products = session.createQuery("from Product", Product.class).list();
 				List<Category> categories = session.createQuery("from Category", Category.class).list();
 				
 				transaction.commit();
