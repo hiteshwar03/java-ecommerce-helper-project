@@ -8,6 +8,6 @@
   </head>
   <body>
   		<a href="/eKart/fetch-product?id=all">Home</a>&nbsp;&nbsp;
-  		<a href="#">Cart</a>
+  		<a href="${pageContext.request.contextPath}/frontend/cart.jsp">Cart <span class="cart-items"></span></a>
   </body>
 </html>

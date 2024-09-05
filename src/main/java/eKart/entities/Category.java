@@ -19,7 +19,7 @@ public class Category {
 	private String categoryDescription;
 	
 	@OneToMany(mappedBy = "category")
-	private List<Product> products =new ArrayList<>();
+	private List<Product> products =new ArrayList<>(); 
 	
 	public int getCategoryId() {
 		return categoryId;
