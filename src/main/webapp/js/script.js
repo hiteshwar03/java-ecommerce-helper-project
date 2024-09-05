@@ -76,7 +76,7 @@ function updateCart() {
         `;
 
 		$(".cart-body").html(table);
-		$(".checkout-btn").removeClass('disabled').addClass('enabled');
+		$(".checkout-btn").removeClass('disabled');
 	}
 
 	// Update cart length display

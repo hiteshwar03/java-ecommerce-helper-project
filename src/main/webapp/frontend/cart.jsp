@@ -17,7 +17,8 @@
     	
     	
     </div>
-    <button class="checkout-btn">Checkout</button>
+    <button class="checkout-btn btn btn-primary">Checkout</button>
+    
     
 </body>
 </html>
