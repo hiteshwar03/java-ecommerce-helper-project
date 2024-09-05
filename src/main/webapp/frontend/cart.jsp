@@ -15,9 +15,9 @@
     	
     	
     	
-    	<button class="checkout-btn">Checkout</button>
+    	
     </div>
+    <button class="checkout-btn">Checkout</button>
     
-    <script src="${pageContext.request.contextPath}/js/script.js" type="text/javascript"></script>
 </body>
 </html>
