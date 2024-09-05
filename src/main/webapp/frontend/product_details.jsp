@@ -6,6 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Product List</title>
+    
 </head>
 <body>
     <h1>Product List</h1>
@@ -35,13 +36,13 @@
                         </c:if>
                     </td>
                     <td>
-                    	 <a href="${pageContext.request.contextPath}/addToCartProduct?id=${product.productId}">
-                            <button>add to cart</button>
-                        </a>
+                            <button onclick="addToProduct(${product.productId}, '${product.pName}', ${product.pPrice})">add to cart</button>
                     </td>
                 </tr>
            
         </tbody>
+        
+        <script src="${pageContext.request.contextPath}/js/script.js" type="text/javascript"></script>
     </table>
 </body>
 </html>
